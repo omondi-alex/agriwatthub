@@ -1,0 +1,13 @@
+{
+  "name": "agriwatthub-briefing",
+  "version": "1.0.0",
+  "description": "Interactive briefing document for Agriwatt Hub partnership",
+  "main": "agriwatthub.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": ["agritech", "kenya", "briefing", "interactive"],
+  "author": "Your Name",
+  "license": "MIT"
+} 
