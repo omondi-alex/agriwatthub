@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnering with Agriwatt Hub: A Developer's Perspective</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Savanna Earth -->
+    <!-- Application Structure Plan: A single-page dashboard-style briefing designed for a developer preparing for a meeting with the CEO. The structure is thematic and task-oriented, not a linear replication of the report. It flows from a high-level overview to a deep dive on the company, then the market context, and finally a concrete 'developer playbook'. This non-linear, explorable structure allows the user to quickly grasp key takeaways or drill down into specific areas of interest, which is more effective for meeting preparation than reading a static document. Key interactions include tabbed content for focused information, interactive charts for data context, and a linked challenges/opportunities section to connect problems with potential solutions. -->
+    <!-- Visualization & Content Choices: 1. Mobile Penetration (Data: 55% feature phones): Goal: Inform. Viz: Donut Chart (Chart.js). Interaction: Hover for details. Justification: Visually striking, immediately highlights the critical need for USSD/SMS solutions beyond just smartphone apps. 2. Competitor Landscape (Data: Funding/User numbers): Goal: Compare. Viz: Horizontal Bar Chart (Chart.js). Interaction: Hover for values. Justification: Provides clear competitive context and market scale. 3. Services: Goal: Organize. Viz: Icon-based HTML/CSS Grid. Interaction: Hover reveals details. Justification: More engaging and scannable than a bulleted list. 4. Operational Process: Goal: Organize. Viz: Numbered HTML/CSS flow diagram. Justification: Clarifies the company's client engagement model visually. 5. Challenges & Opportunities: Goal: Show relationships. Viz: Interactive two-column layout. Interaction: Click a challenge to highlight the corresponding opportunity. Justification: Actively connects problems to actionable developer-led solutions. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF5; /* Warm Neutral Background */
+            color: #4A4A4A;
+        }
+        .bg-primary { background-color: #FDFBF5; }
+        .bg-secondary { background-color: #FFFFFF; }
+        .text-accent { color: #6D8B74; } /* Muted Green */
+        .border-accent { border-color: #6D8B74; }
+        .bg-accent { background-color: #6D8B74; }
+        .bg-accent-light { background-color: #EAF0E5; }
+        .text-dark { color: #333333; }
+        .text-medium { color: #555555; }
+        .text-light { color: #777777; }
+        .active-nav {
+            color: #6D8B74;
+            font-weight: 600;
+        }
+        .tab-btn.active {
+            border-color: #6D8B74;
+            background-color: #EAF0E5;
+            color: #333333;
+        }
+        .challenge-item.selected {
+            background-color: #EAF0E5;
+            transform: scale(1.03);
+        }
+        .opportunity-item.highlight {
+            background-color: #EAF0E5;
+            border-left-color: #6D8B74;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-primary text-dark">
+
+    <header class="bg-secondary/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-accent">Partnering with Agriwatt Hub</h1>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium">
+                <li><a href="#overview" class="hover:text-accent transition-colors duration-300">My Understanding</a></li>
+                <li><a href="#deep-dive" class="hover:text-accent transition-colors duration-300">About Agriwatt Hub</a></li>
+                <li><a href="#landscape" class="hover:text-accent transition-colors duration-300">Market Context</a></li>
+                <li><a href="#playbook" class="hover:text-accent transition-colors duration-300">How I Can Help</a></li>
+            </ul>
+            <div class="md:hidden">
+                <select id="mobile-nav" class="bg-white border border-gray-300 rounded-md py-1 px-2 text-sm">
+                    <option value="#overview">My Understanding</option>
+                    <option value="#deep-dive">About Agriwatt Hub</option>
+                    <option value="#landscape">Market Context</option>
+                    <option value="#playbook">How I Can Help</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section id="overview" class="mb-24 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-dark mb-4">Digitizing Kenyan Agriculture</h2>
+            <p class="text-lg text-medium max-w-3xl mx-auto mb-12">Mr. Benard, thank you for this opportunity. I've prepared an interactive overview of my understanding of Agriwatt Hub and the Kenyan agritech space, and how I believe my skills can contribute to your vision.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="bg-secondary p-6 rounded-lg shadow-md lg:col-span-2">
+                    <h3 class="font-bold text-xl mb-3 text-accent">My Initial Insights into Agriwatt Hub</h3>
+                     <p class="text-sm text-light mb-4">Based on my research, these are some key points that stood out about Agriwatt Hub and the market you operate in.</p>
+                    <ul class="space-y-3 text-medium">
+                        <li class="flex items-start"><span class="text-accent font-bold mr-3 mt-1">&#10003;</span><span><strong class="text-dark">Core Mission:</strong> My understanding is Agriwatt Hub leverages IoT, AI, and data analytics for precision farming to boost productivity in Kenya.</span></li>
+                        <li class="flex items-start"><span class="text-accent font-bold mr-3 mt-1">&#10003;</span><span><strong class="text-dark">Market Challenge:</strong> The market faces high costs, poor infrastructure, and low farmer trust. This tells me solutions must be affordable, offline-capable, and user-centric.</span></li>
+                        <li class="flex items-start"><span class="text-accent font-bold mr-3 mt-1">&#10003;</span><span><strong class="text-dark">Website First Impressions:</strong> I noticed the current website can be slow to load and is very text-heavy. A strong visual presence is key for modern engagement.</span></li>
+                        <li class="flex items-start"><span class="text-accent font-bold mr-3 mt-1">&#10003;</span><span><strong class="text-dark">Developer Opportunity:</strong> I see huge potential in building scalable data systems, mobile solutions (even for feature phones), and tools that build farmer trust, as well as enhancing your digital presence.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-accent-light p-6 rounded-lg border border-accent/30">
+                     <h3 class="font-bold text-xl mb-3 text-accent">Introduction</h3>
+                     <p class="text-sm text-light mb-4">I appreciate you reaching out through the "Ndiru alumni group" connection. It's a great starting point for our discussion, and I'm keen to hear more about your journey and how you came to lead Agriwatt Hub.</p>
+                     <p class="text-medium mb-2"><strong class="text-dark">My Goal:</strong> To explore how my development expertise can help Agriwatt Hub achieve its mission, and identify concrete ways we can collaborate.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="deep-dive" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-3">About Agriwatt Hub: My Understanding</h2>
+                <p class="text-lg text-medium max-w-3xl mx-auto">Mr. Benard, let's dive into what I've gathered about Agriwatt Hub's core business model. I've broken it down into your services, technology, and operational approach.</p>
+            </div>
+
+            <div class="bg-secondary rounded-lg shadow-lg p-4 sm:p-8">
+                <div class="border-b border-gray-200 mb-6">
+                    <nav class="flex flex-wrap -mb-px" id="tabs-nav">
+                        <button class="tab-btn active text-medium whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm transition-colors" data-tab="services">Your Services & Solutions</button>
+                        <button class="tab-btn text-medium whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm transition-colors" data-tab="tech">Your Technology Stack</button>
+                        <button class="tab-btn text-medium whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm transition-colors" data-tab="ops">Your Operational Approach</button>
+                    </nav>
+                </div>
+
+                <div id="tab-content">
+                    <div id="services" class="tab-pane">
+                        <p class="text-medium mb-6">Agriwatt Hub offers a comprehensive suite of services designed to digitize farm operations. Your core offerings are enhanced by training and strategic consulting, reflecting a holistic approach to technology adoption. I noted your ambitious goal to establish <strong class="text-dark">120+ "Digital Hubs"</strong> in your first year.</p>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-gray-50 p-5 rounded-lg border hover:shadow-md transition-shadow">
+                                <h4 class="font-semibold text-lg mb-2 text-dark">Precision Farming</h4>
+                                <p class="text-sm text-light">Optimizes field-level management using satellite and sensor data.</p>
+                            </div>
+                            <div class="bg-gray-50 p-5 rounded-lg border hover:shadow-md transition-shadow">
+                                <h4 class="font-semibold text-lg mb-2 text-dark">Crop Monitoring</h4>
+                                <p class="text-sm text-light">Real-time crop health analysis via drones and satellites.</p>
+                            </div>
+                             <div class="bg-gray-50 p-5 rounded-lg border hover:shadow-md transition-shadow">
+                                <h4 class="font-semibold text-lg mb-2 text-dark">Smart Irrigation</h4>
+                                <p class="text-sm text-light">Automated water systems to conserve resources and improve yields.</p>
+                            </div>
+                            <div class="bg-gray-50 p-5 rounded-lg border hover:shadow-md transition-shadow">
+                                <h4 class="font-semibold text-lg mb-2 text-dark">Farm Analytics</h4>
+                                <p class="text-sm text-light">Data analysis to enhance decision-making and operational efficiency.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tech" class="tab-pane hidden">
+                         <p class="text-medium mb-6">Your company's value proposition is clearly built on a foundation of modern technology. You transform raw data from various sources into actionable intelligence for farmers, embodying your philosophy: <strong class="text-dark">"technology should speak the farmer's language."</strong></p>
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+                           <div class="p-4 rounded-lg bg-gray-50 border w-full md:w-auto">
+                               <h4 class="font-semibold">Data Sources</h4>
+                               <p class="text-sm mt-1">IoT Sensors, Satellites, Drones</p>
+                           </div>
+                            <span class="text-2xl text-accent font-light transform md:-rotate-0">&rarr;</span>
+                           <div class="p-4 rounded-lg bg-gray-50 border w-full md:w-auto">
+                               <h4 class="font-semibold">Processing Engine</h4>
+                               <p class="text-sm mt-1">AI & Analytics Platform</p>
+                           </div>
+                           <span class="text-2xl text-accent font-light transform md:-rotate-0">&rarr;</span>
+                           <div class="p-4 rounded-lg bg-accent-light border border-accent/30 w-full md:w-auto">
+                               <h4 class="font-semibold">Farmer Solutions</h4>
+                               <p class="text-sm mt-1">Actionable Insights, Automated Systems</p>
+                           </div>
+                        </div>
+                    </div>
+                    <div id="ops" class="tab-pane hidden">
+                        <p class="text-medium mb-8">I observed that Agriwatt Hub uses a structured four-step process to deploy its solutions, ensuring a tailored approach for each farm. This model combines high-tech tools with crucial on-the-ground training and support.</p>
+                        <div class="grid md:grid-cols-4 gap-4 md:gap-0 relative">
+                            <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2"></div>
+                             <div class="relative flex flex-col items-center text-center p-4">
+                                <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-xl z-10">1</div>
+                                <h4 class="font-semibold mt-3">Consultation</h4>
+                                <p class="text-sm text-light mt-1">Assess farm challenges & digital readiness.</p>
+                            </div>
+                             <div class="relative flex flex-col items-center text-center p-4">
+                                <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-xl z-10">2</div>
+                                <h4 class="font-semibold mt-3">Assessment</h4>
+                                <p class="text-sm text-light mt-1">Identify optimization opportunities.</p>
+                            </div>
+                           <div class="relative flex flex-col items-center text-center p-4">
+                                <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-xl z-10">3</div>
+                                <h4 class="font-semibold mt-3">Implementation</h4>
+                                <p class="text-sm text-light mt-1">Deploy customized digital tools.</p>
+                            </div>
+                            <div class="relative flex flex-col items-center text-center p-4">
+                                <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-bold text-xl z-10">4</div>
+                                <h4 class="font-semibold mt-3">Training & Support</h4>
+                                <p class="text-sm text-light mt-1">Ensure team proficiency & provide ongoing help.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="landscape" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-3">Kenyan Agritech Market Context</h2>
+                <p class="text-lg text-medium max-w-3xl mx-auto">To fully appreciate Agriwatt Hub's potential, it's essential to look at the broader Kenyan Agritech market. I've identified some key challenges and exciting opportunities that shape this landscape.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-secondary rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-2 text-accent">Challenge: The Digital Divide</h3>
+                    <p class="text-medium mb-4">One of the most significant challenges I noted is the digital divide. While mobile penetration is high, over half of connected phones are feature phones. This is a critical constraint for app-based solutions and highlights the need for accessible technologies like USSD and SMS.</p>
+                    <div class="chart-container">
+                        <canvas id="mobilePenetrationChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-secondary rounded-lg shadow-lg p-6">
+                    <h3 class="font-bold text-xl mb-2 text-accent">Competitive Landscape</h3>
+                    <p class="text-medium mb-4">And looking at the competitive landscape, we see a vibrant scene with well-funded startups tackling various aspects of the agricultural value chain. This chart shows a sample of key players and their scale, providing context for Agriwatt Hub's market position.</p>
+                     <div class="chart-container" style="height: 350px; max-height: 400px;">
+                        <canvas id="competitorsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+             <div class="mt-12 bg-secondary rounded-lg shadow-lg p-6">
+                 <h3 class="font-bold text-xl mb-2 text-accent">Challenges vs. Opportunities: Where I See Impact</h3>
+                 <p class="text-medium mb-6">The Kenyan market presents a classic case where significant challenges create massive opportunities for innovation. Mr. Benard, this is where I see a direct link between market challenges and where my development skills can create real impact. Let's look at some key challenges and how they translate into opportunities for Agriwatt Hub. Simply click on a challenge to see the corresponding opportunity.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 text-center">Top 3 Market Challenges</h4>
+                        <ul class="space-y-3" id="challenges-list">
+                            <li class="challenge-item p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-all duration-300" data-opportunity="cost">
+                                <strong class="text-dark">1. High Cost</strong>
+                                <p class="text-sm text-light mt-1">Expensive hardware, data, and credit limit farmer investment.</p>
+                            </li>
+                            <li class="challenge-item p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-all duration-300" data-opportunity="infra">
+                                <strong class="text-dark">2. Infrastructure Gaps</strong>
+                                <p class="text-sm text-light mt-1">Unreliable internet and power in rural areas hinder digital tool usage.</p>
+                            </li>
+                            <li class="challenge-item p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-all duration-300" data-opportunity="trust">
+                                <strong class="text-dark">3. Lack of Trust & Training</strong>
+                                <p class="text-sm text-light mt-1">Farmers are often wary of new platforms and lack digital literacy.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 text-center">Your Developer Opportunities</h4>
+                         <ul class="space-y-3" id="opportunities-list">
+                            <li class="opportunity-item p-4 border border-l-4 border-transparent rounded-lg transition-all duration-300" data-opportunity="cost">
+                                <strong class="text-dark">Cost-Effective Solutions</strong>
+                                <p class="text-sm text-light mt-1">Build lightweight, low-data apps. Leverage USSD/SMS. Explore Fintech integrations for affordable credit.</p>
+                            </li>
+                             <li class="opportunity-item p-4 border border-l-4 border-transparent rounded-lg transition-all duration-300" data-opportunity="infra">
+                                <strong class="text-dark">Resilient Technology</strong>
+                                <p class="text-sm text-light mt-1">Engineer offline-first capabilities and robust data synchronization for low-bandwidth environments.</p>
+                            </li>
+                            <li class="opportunity-item p-4 border border-l-4 border-transparent rounded-lg transition-all duration-300" data-opportunity="trust">
+                                <strong class="text-dark">Human-Centric Design</strong>
+                                <p class="text-sm text-light mt-1">Create intuitive UIs, in-app training modules, and transparent systems (e.g., blockchain for traceability) to build confidence.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="playbook">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-3">My Developer Playbook: How I Can Help Agriwatt Hub</h2>
+                <p class="text-lg text-medium max-w-3xl mx-auto">Mr. Benard, this is where I want to talk about concrete ways I can contribute. I've outlined areas where my expertise can directly help, some initial project ideas, and key questions I have for you.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-secondary p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-3 text-accent">Areas Where My Expertise Can Directly Contribute</h3>
+                     <p class="text-sm text-light mb-4">Based on Agriwatt Hub's mission and market needs, these are potential technical areas where I can add significant value.</p>
+                    <ul class="list-disc list-inside space-y-2 text-medium">
+                        <li>Robust Data Infrastructure & Management</li>
+                        <li>Custom AI/ML Model Development for Ag-specific insights</li>
+                        <li>Farmer-Centric UI/UX Design & Development</li>
+                        <li>Offline & Low-Bandwidth Capable Solutions</li>
+                        <li>Ecosystem & API Integration with other platforms</li>
+                        <li>Specialized Tools for Field Agents & Trainers</li>
+                        <li><strong class="text-dark">Website Revitalization & Design Excellence</strong></li>
+                        <li><strong class="text-dark">Holistic Design Management & Brand Consistency</strong></li>
+                        <li><strong class="text-dark">Digital Marketing Strategy & Execution</strong></li>
+                    </ul>
+                </div>
+                <div class="bg-accent-light p-6 rounded-lg border border-accent/30">
+                    <h3 class="font-bold text-xl mb-3 text-accent">Concrete Project Ideas for Our Collaboration</h3>
+                    <p class="text-sm text-light mb-4">Here are some initial, high-impact project ideas we could explore together to demonstrate immediate value.</p>
+                     <ul class="list-disc list-inside space-y-2 text-medium">
+                        <li>Pilot a data visualization dashboard for farmers.</li>
+                        <li>Assess and optimize your current data pipelines.</li>
+                        <li>Develop an offline-first mobile module for data collection.</li>
+                        <li>Prototype blockchain for supply chain traceability.</li>
+                        <li>Build a farmer feedback platform (SMS/USSD enabled).</li>
+                        <li><strong class="text-dark">Propose a comprehensive website redesign and performance optimization.</strong></li>
+                        <li><strong class="text-dark">Develop a digital marketing plan to enhance online presence.</strong></li>
+                    </ul>
+                </div>
+                <div class="bg-secondary p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-3 text-accent">Beyond Development: Holistic Support</h3>
+                    <p class="text-sm text-light mb-4">My support extends beyond core development. I can also assist with operational tasks, freeing up your team to focus on core business.</p>
+                     <ul class="list-disc list-inside space-y-2 text-medium">
+                        <li><strong class="text-dark">Virtual Assistant Services:</strong> Support for administrative, research, and data entry tasks.</li>
+                        <li><strong class="text-dark">Content Creation & Management:</strong> Assisting with blog posts, social media content, and website updates.</li>
+                        <li><strong class="text-dark">Project Coordination:</strong> Helping manage smaller projects or specific initiatives.</li>
+                     </ul>
+                </div>
+                <div class="bg-secondary p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl mb-3 text-accent">Questions for You, Mr. Benard</h3>
+                    <p class="text-sm text-light mb-4">To ensure I can best support Agriwatt Hub, I have a few questions that would help deepen my understanding.</p>
+                     <ul class="list-disc list-inside space-y-2 text-medium">
+                        <li>Can you clarify the 'Founded in 2025' date?</li>
+                        <li>What is the full vision for the 'Digital Hubs'?</li>
+                        <li>What does your current tech stack look like?</li>
+                        <li>What are your biggest farmer adoption challenges right now?</li>
+                        <li>What is Agriwatt Hub's most pressing technical pain point today?</li>
+                        <li><strong class="text-dark">What are your current priorities for your website and digital presence?</strong></li>
+                     </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-secondary mt-24 border-t">
+        <div class="container mx-auto px-6 py-4 text-center text-sm text-light">
+            <p>Interactive Briefing Generated for Developer Engagement | &copy; 2025</p>
+            <p class="mt-2">Omondi Alex | <a href="tel:+254707750879" class="text-accent hover:underline">+254 70 775 08 79</a> | <a href="https://portfolio-nu-ruddy-85.vercel.app/" target="_blank" class="text-accent hover:underline">My Portfolio</a></p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const appData = {
+        mobilePenetration: {
+            labels: ['Feature Phones', 'Smartphones'],
+            data: [55, 45],
+        },
+        competitors: {
+            labels: ['Apollo Agriculture', 'Shamba Records', 'Aquarech & Coamana'],
+            data: [10000000, 50000, 850000],
+            dataLabels: ['$10M Funding', '50k+ Farmers Reached', '$850k Investment']
+        }
+    };
+    
+    const mobileCtx = document.getElementById('mobilePenetrationChart').getContext('2d');
+    new Chart(mobileCtx, {
+        type: 'doughnut',
+        data: {
+            labels: appData.mobilePenetration.labels,
+            datasets: [{
+                label: 'Mobile Phone Type',
+                data: appData.mobilePenetration.data,
+                backgroundColor: ['#B0C4B1', '#6D8B74'],
+                borderColor: '#FDFBF5',
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}%`;
+                        }
+                    }
+                }
+            },
+            cutout: '60%'
+        }
+    });
+
+    const competitorsCtx = document.getElementById('competitorsChart').getContext('2d');
+    new Chart(competitorsCtx, {
+        type: 'bar',
+        data: {
+            labels: appData.competitors.labels,
+            datasets: [{
+                label: 'Scale Metric',
+                data: appData.competitors.data,
+                backgroundColor: '#6D8B74',
+                borderColor: '#5A7D6C',
+                borderWidth: 1,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return appData.competitors.dataLabels[context.dataIndex];
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                       display: false
+                    }
+                },
+                y: {
+                     grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    const tabsNav = document.getElementById('tabs-nav');
+    const tabPanes = document.querySelectorAll('#tab-content .tab-pane');
+    tabsNav.addEventListener('click', (e) => {
+        if (e.target.classList.contains('tab-btn')) {
+            tabsNav.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            const targetTab = e.target.getAttribute('data-tab');
+            tabPanes.forEach(pane => {
+                if (pane.id === targetTab) {
+                    pane.classList.remove('hidden');
+                } else {
+                    pane.classList.add('hidden');
+                }
+            });
+        }
+    });
+    
+    const challengesList = document.getElementById('challenges-list');
+    const opportunitiesList = document.getElementById('opportunities-list');
+    challengesList.addEventListener('click', e => {
+        const challengeItem = e.target.closest('.challenge-item');
+        if (!challengeItem) return;
+
+        challengesList.querySelectorAll('.challenge-item').forEach(item => item.classList.remove('selected'));
+        challengeItem.classList.add('selected');
+
+        const opportunityKey = challengeItem.dataset.opportunity;
+        opportunitiesList.querySelectorAll('.opportunity-item').forEach(item => {
+            if (item.dataset.opportunity === opportunityKey) {
+                item.classList.add('highlight');
+            } else {
+                item.classList.remove('highlight');
+            }
+        });
+    });
+    
+    const mobileNav = document.getElementById('mobile-nav');
+    mobileNav.addEventListener('change', (e) => {
+        window.location.hash = e.target.value;
+    });
+
+});
+</script>
+
+</body>
+</html>
